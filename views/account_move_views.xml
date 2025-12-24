@@ -15,6 +15,37 @@
                     <field name="mrdc_shipment_id" widget="statinfo" string="Embarque"/>
                 </button>
             </xpath>
+
+            <!-- Agregar botón para desasociar en el header -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_disassociate_shipment" type="object" 
+                        class="oe_stat_button" icon="fa-chain-broken"
+                        invisible="not mrdc_shipment_id"
+                        confirm="¿Está seguro que desea desasociar esta factura del embarque?">
+                    <span class="o_stat_text">Desasociar</span>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vista list para mostrar en el wizard de desasociación -->
+    <record id="view_account_move_list_associated" model="ir.ui.view">
+        <field name="name">account.move.list.associated</field>
+        <field name="model">account.move</field>
+        <field name="arch" type="xml">
+            <list string="Facturas Asociadas" multi_edit="1">
+                <field name="name" string="Número"/>
+                <field name="partner_id" string="Cliente/Proveedor"/>
+                <field name="move_type" string="Tipo"/>
+                <field name="invoice_date" string="Fecha"/>
+                <field name="amount_total" string="Total"/>
+                <field name="currency_id" string="Moneda"/>
+                <field name="state" string="Estado" widget="badge"
+                    decoration-success="state == 'posted'"
+                    decoration-warning="state == 'draft'"
+                    decoration-danger="state == 'cancel'"/>
+                <field name="mrdc_shipment_id" string="Embarque" optional="hide"/>
+            </list>
         </field>
     </record>
 

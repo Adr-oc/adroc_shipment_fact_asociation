@@ -10,7 +10,7 @@ class MrdcShipment(models.Model):
         comodel_name='account.move',
         inverse_name='mrdc_shipment_id',
         string='Facturas Asociadas',
-        domain="[('move_type', 'in', ['out_invoice', 'in_invoice', 'out_refund', 'in_refund']), ('company_id', '=', company_id)]",
+        domain="[('move_type', 'in', ['out_invoice', 'in_invoice', 'out_refund', 'in_refund'])]",
         help='Facturas asociadas a este embarque.',
     )
 
@@ -25,7 +25,7 @@ class MrdcShipment(models.Model):
             record.associated_move_count = len(record.associated_move_ids)
 
     def action_view_associated_moves(self):
-        """Abrir vista de todas las facturas asociadas"""
+        """Abrir vista de todas las facturas asociadas con opción de desasociar"""
         self.ensure_one()
         return {
             'type': 'ir.actions.act_window',
@@ -46,6 +46,20 @@ class MrdcShipment(models.Model):
             'type': 'ir.actions.act_window',
             'name': 'Asociar Facturas',
             'res_model': 'associate.invoice.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_shipment_id': self.id,
+            },
+        }
+
+    def action_open_disassociate_wizard(self):
+        """Abrir wizard para desasociar facturas"""
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Desasociar Facturas',
+            'res_model': 'disassociate.invoice.wizard',
             'view_mode': 'form',
             'target': 'new',
             'context': {

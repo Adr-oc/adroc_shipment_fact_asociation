@@ -18,10 +18,13 @@
                 </button>
             </xpath>
 
-            <!-- Agregar botón de acción en el header -->
+            <!-- Agregar botones de acción en el header -->
             <xpath expr="//header" position="inside">
                 <button name="action_open_associate_wizard" type="object" 
                         string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+                <button name="action_open_disassociate_wizard" type="object" 
+                        string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
+                        invisible="associated_move_count == 0"/>
             </xpath>
         </field>
     </record>
@@ -44,6 +47,9 @@
             <xpath expr="//header" position="inside">
                 <button name="action_open_associate_wizard" type="object" 
                         string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+                <button name="action_open_disassociate_wizard" type="object" 
+                        string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
+                        invisible="associated_move_count == 0"/>
             </xpath>
         </field>
     </record>
@@ -66,6 +72,9 @@
             <xpath expr="//header" position="inside">
                 <button name="action_open_associate_wizard" type="object" 
                         string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+                <button name="action_open_disassociate_wizard" type="object" 
+                        string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
+                        invisible="associated_move_count == 0"/>
             </xpath>
         </field>
     </record>
@@ -88,6 +97,9 @@
             <xpath expr="//header" position="inside">
                 <button name="action_open_associate_wizard" type="object" 
                         string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+                <button name="action_open_disassociate_wizard" type="object" 
+                        string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
+                        invisible="associated_move_count == 0"/>
             </xpath>
         </field>
     </record>
@@ -110,6 +122,9 @@
             <xpath expr="//header" position="inside">
                 <button name="action_open_associate_wizard" type="object" 
                         string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+                <button name="action_open_disassociate_wizard" type="object" 
+                        string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
+                        invisible="associated_move_count == 0"/>
             </xpath>
         </field>
     </record>
@@ -132,6 +147,9 @@
             <xpath expr="//header" position="inside">
                 <button name="action_open_associate_wizard" type="object" 
                         string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+                <button name="action_open_disassociate_wizard" type="object" 
+                        string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
+                        invisible="associated_move_count == 0"/>
             </xpath>
         </field>
     </record>

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
-    <!-- Vista Form del Wizard -->
+    <!-- ========================================== -->
+    <!-- Wizard Asociar Facturas -->
+    <!-- ========================================== -->
     <record id="associate_invoice_wizard_form" model="ir.ui.view">
         <field name="name">associate.invoice.wizard.form</field>
         <field name="model">associate.invoice.wizard</field>
@@ -30,14 +32,33 @@
         </field>
     </record>
 
-    <!-- Acción para abrir el wizard -->
-    <record id="action_associate_invoice_wizard" model="ir.actions.act_window">
-        <field name="name">Asociar Facturas</field>
-        <field name="res_model">associate.invoice.wizard</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-        <field name="context">{'default_shipment_id': active_id}</field>
+    <!-- ========================================== -->
+    <!-- Wizard Desasociar Facturas -->
+    <!-- ========================================== -->
+    <record id="disassociate_invoice_wizard_form" model="ir.ui.view">
+        <field name="name">disassociate.invoice.wizard.form</field>
+        <field name="model">disassociate.invoice.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Desasociar Facturas">
+                <group>
+                    <field name="shipment_id"/>
+                </group>
+                <group string="Seleccione las facturas a desasociar">
+                    <field name="invoice_ids" widget="many2many_tags" 
+                           nolabel="1" colspan="2"
+                           options="{'no_create': True, 'no_quick_create': True}"/>
+                </group>
+                <group>
+                    <p class="text-muted text-danger">
+                        Las facturas seleccionadas serán desvinculadas de este embarque.
+                    </p>
+                </group>
+                <footer>
+                    <button name="action_disassociate" type="object" string="Desasociar" class="btn-danger"/>
+                    <button string="Cancelar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
     </record>
 
 </odoo>
-

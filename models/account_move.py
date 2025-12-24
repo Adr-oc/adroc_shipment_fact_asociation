@@ -5,9 +5,6 @@ from odoo import models, fields, api
 class AccountMove(models.Model):
     _inherit = 'account.move'
 
-    # El campo mrdc_shipment_id ya existe en mrdc_shipment_base
-    # Solo agregamos el conteo de embarques para el botón estadístico
-    
     def action_view_shipment(self):
         """Abrir vista del embarque asociado"""
         self.ensure_one()
@@ -19,3 +16,8 @@ class AccountMove(models.Model):
                 'view_mode': 'form',
                 'res_id': self.mrdc_shipment_id.id,
             }
+
+    def action_disassociate_shipment(self):
+        """Desasociar la factura del embarque"""
+        self.write({'mrdc_shipment_id': False})
+        return True
