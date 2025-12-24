@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- ========================================== -->
+    <!-- 1. Importador/Exportador -->
+    <!-- ========================================== -->
+    <record id="view_mrdc_shipment_form_associated_invoices_importer" model="ir.ui.view">
+        <field name="name">mrdc.shipment.form.associated.invoices.importer</field>
+        <field name="model">mrdc.shipment</field>
+        <field name="inherit_id" ref="mrdc_shipment_importer_exporter.view_mrdc_shipment_form"/>
+        <field name="arch" type="xml">
+            <!-- Agregar botón en el button_box -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_associated_moves" type="object" 
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="associated_move_count == 0">
+                    <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
+                </button>
+            </xpath>
+
+            <!-- Agregar botón de acción en el header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_open_associate_wizard" type="object" 
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================== -->
+    <!-- 2. Naviera/Aerolínea (Carrier) -->
+    <!-- ========================================== -->
+    <record id="view_mrdc_shipment_form_associated_invoices_carrier" model="ir.ui.view">
+        <field name="name">mrdc.shipment.form.associated.invoices.carrier</field>
+        <field name="model">mrdc.shipment</field>
+        <field name="inherit_id" ref="mrdc_shipment_carrier.view_mrdc_shipment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_associated_moves" type="object" 
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="associated_move_count == 0">
+                    <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_open_associate_wizard" type="object" 
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================== -->
+    <!-- 3. Agencia Aduanal (Customs Agency) -->
+    <!-- ========================================== -->
+    <record id="view_mrdc_shipment_form_associated_invoices_customs_agency" model="ir.ui.view">
+        <field name="name">mrdc.shipment.form.associated.invoices.customs_agency</field>
+        <field name="model">mrdc.shipment</field>
+        <field name="inherit_id" ref="mrdc_shipment_customs_agency.view_mrdc_shipment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_associated_moves" type="object" 
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="associated_move_count == 0">
+                    <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_open_associate_wizard" type="object" 
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================== -->
+    <!-- 4. Gestor Aduanero (Customs Broker Person) -->
+    <!-- ========================================== -->
+    <record id="view_mrdc_shipment_form_associated_invoices_customs_broker" model="ir.ui.view">
+        <field name="name">mrdc.shipment.form.associated.invoices.customs_broker</field>
+        <field name="model">mrdc.shipment</field>
+        <field name="inherit_id" ref="mrdc_shipment_customs_broker_person.view_mrdc_shipment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_associated_moves" type="object" 
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="associated_move_count == 0">
+                    <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_open_associate_wizard" type="object" 
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================== -->
+    <!-- 5. Agencia de Carga (Freight Agency) -->
+    <!-- ========================================== -->
+    <record id="view_mrdc_shipment_form_associated_invoices_freight" model="ir.ui.view">
+        <field name="name">mrdc.shipment.form.associated.invoices.freight</field>
+        <field name="model">mrdc.shipment</field>
+        <field name="inherit_id" ref="mrdc_shipment_freight_agency.view_mrdc_shipment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_associated_moves" type="object" 
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="associated_move_count == 0">
+                    <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_open_associate_wizard" type="object" 
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- ========================================== -->
+    <!-- 6. Transportista de Mercancías (Good Carrier) -->
+    <!-- ========================================== -->
+    <record id="view_mrdc_shipment_form_associated_invoices_good_carrier" model="ir.ui.view">
+        <field name="name">mrdc.shipment.form.associated.invoices.good_carrier</field>
+        <field name="model">mrdc.shipment</field>
+        <field name="inherit_id" ref="mrdc_shipment_good_carrier.view_mrdc_shipment_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_associated_moves" type="object" 
+                        class="oe_stat_button" icon="fa-file-text-o"
+                        invisible="associated_move_count == 0">
+                    <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
+                </button>
+            </xpath>
+            <xpath expr="//header" position="inside">
+                <button name="action_open_associate_wizard" type="object" 
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

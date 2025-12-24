@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Extender vista Form de Factura para mostrar botón de embarque -->
+    <record id="view_account_move_form_shipment_button" model="ir.ui.view">
+        <field name="name">account.move.form.shipment.button</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Agregar botón en el button_box para ir al embarque -->
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_shipment" type="object" 
+                        class="oe_stat_button" icon="fa-ship"
+                        invisible="not mrdc_shipment_id">
+                    <field name="mrdc_shipment_id" widget="statinfo" string="Embarque"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
