@@ -1,17 +1,18 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 
 class MrdcShipment(models.Model):
     _inherit = 'mrdc.shipment'
 
-    # Campo One2many inverso del mrdc_shipment_id en account.move
+    # Campo One2many inverso del mrdc_shipment_id en account.move (solo facturas de compra)
     associated_move_ids = fields.One2many(
         comodel_name='account.move',
         inverse_name='mrdc_shipment_id',
-        string='Facturas Asociadas',
-        domain="[('move_type', 'in', ['out_invoice', 'in_invoice', 'out_refund', 'in_refund'])]",
-        help='Facturas asociadas a este embarque.',
+        string='Facturas de Compra Asociadas',
+        domain="[('move_type', 'in', ['in_invoice', 'in_refund'])]",
+        help='Facturas de compra asociadas a este embarque.',
     )
 
     associated_move_count = fields.Integer(
@@ -40,11 +41,13 @@ class MrdcShipment(models.Model):
         }
 
     def action_open_associate_wizard(self):
-        """Abrir wizard para asociar facturas"""
+        """Abrir wizard para asociar facturas de compra"""
         self.ensure_one()
+        if self.state == 'delivered':
+            raise UserError('No se pueden asociar facturas a un embarque cerrado.')
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Asociar Facturas',
+            'name': 'Asociar Facturas de Compra',
             'res_model': 'associate.invoice.wizard',
             'view_mode': 'form',
             'target': 'new',
@@ -54,11 +57,13 @@ class MrdcShipment(models.Model):
         }
 
     def action_open_disassociate_wizard(self):
-        """Abrir wizard para desasociar facturas"""
+        """Abrir wizard para desasociar facturas de compra"""
         self.ensure_one()
+        if self.state == 'delivered':
+            raise UserError('No se pueden desasociar facturas de un embarque cerrado.')
         return {
             'type': 'ir.actions.act_window',
-            'name': 'Desasociar Facturas',
+            'name': 'Desasociar Facturas de Compra',
             'res_model': 'disassociate.invoice.wizard',
             'view_mode': 'form',
             'target': 'new',

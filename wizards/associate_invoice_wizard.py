@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api
+from odoo.exceptions import UserError
 
 
 class AssociateInvoiceWizard(models.TransientModel):
     _name = 'associate.invoice.wizard'
-    _description = 'Wizard para Asociar Facturas al Embarque'
+    _description = 'Wizard para Asociar Facturas de Compra al Embarque'
 
     shipment_id = fields.Many2one(
         comodel_name='mrdc.shipment',
@@ -25,13 +26,15 @@ class AssociateInvoiceWizard(models.TransientModel):
         relation='associate_invoice_wizard_move_rel',
         column1='wizard_id',
         column2='move_id',
-        string='Facturas a Asociar',
-        domain="[('move_type', 'in', ['out_invoice', 'in_invoice', 'out_refund', 'in_refund']), ('company_id', '=', company_id), ('mrdc_shipment_id', '=', False)]",
+        string='Facturas de Compra a Asociar',
+        domain="[('move_type', 'in', ['in_invoice', 'in_refund']), ('company_id', '=', company_id), ('mrdc_shipment_id', '=', False)]",
     )
 
     def action_associate(self):
-        """Asociar las facturas seleccionadas al embarque"""
+        """Asociar las facturas de compra seleccionadas al embarque"""
         self.ensure_one()
+        if self.shipment_id.state == 'delivered':
+            raise UserError('No se pueden asociar facturas a un embarque cerrado.')
         if self.invoice_ids:
             self.invoice_ids.write({
                 'mrdc_shipment_id': self.shipment_id.id,

@@ -18,13 +18,14 @@
                 </button>
             </xpath>
 
-            <!-- Agregar botones de acción en el header -->
+            <!-- Agregar botones de acción en el header (solo visibles si embarque abierto) -->
             <xpath expr="//header" position="inside">
-                <button name="action_open_associate_wizard" type="object" 
-                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
-                <button name="action_open_disassociate_wizard" type="object" 
+                <button name="action_open_associate_wizard" type="object"
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"
+                        invisible="state == 'delivered'"/>
+                <button name="action_open_disassociate_wizard" type="object"
                         string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
-                        invisible="associated_move_count == 0"/>
+                        invisible="associated_move_count == 0 or state == 'delivered'"/>
             </xpath>
         </field>
     </record>
@@ -38,18 +39,19 @@
         <field name="inherit_id" ref="mrdc_shipment_carrier.view_mrdc_shipment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_associated_moves" type="object" 
+                <button name="action_view_associated_moves" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
                         invisible="associated_move_count == 0">
                     <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
                 </button>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_open_associate_wizard" type="object" 
-                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
-                <button name="action_open_disassociate_wizard" type="object" 
+                <button name="action_open_associate_wizard" type="object"
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"
+                        invisible="state == 'delivered'"/>
+                <button name="action_open_disassociate_wizard" type="object"
                         string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
-                        invisible="associated_move_count == 0"/>
+                        invisible="associated_move_count == 0 or state == 'delivered'"/>
             </xpath>
         </field>
     </record>
@@ -63,18 +65,19 @@
         <field name="inherit_id" ref="mrdc_shipment_customs_agency.view_mrdc_shipment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_associated_moves" type="object" 
+                <button name="action_view_associated_moves" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
                         invisible="associated_move_count == 0">
                     <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
                 </button>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_open_associate_wizard" type="object" 
-                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
-                <button name="action_open_disassociate_wizard" type="object" 
+                <button name="action_open_associate_wizard" type="object"
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"
+                        invisible="state == 'delivered'"/>
+                <button name="action_open_disassociate_wizard" type="object"
                         string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
-                        invisible="associated_move_count == 0"/>
+                        invisible="associated_move_count == 0 or state == 'delivered'"/>
             </xpath>
         </field>
     </record>
@@ -88,18 +91,19 @@
         <field name="inherit_id" ref="mrdc_shipment_customs_broker_person.view_mrdc_shipment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_associated_moves" type="object" 
+                <button name="action_view_associated_moves" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
                         invisible="associated_move_count == 0">
                     <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
                 </button>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_open_associate_wizard" type="object" 
-                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
-                <button name="action_open_disassociate_wizard" type="object" 
+                <button name="action_open_associate_wizard" type="object"
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"
+                        invisible="state == 'delivered'"/>
+                <button name="action_open_disassociate_wizard" type="object"
                         string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
-                        invisible="associated_move_count == 0"/>
+                        invisible="associated_move_count == 0 or state == 'delivered'"/>
             </xpath>
         </field>
     </record>
@@ -113,18 +117,19 @@
         <field name="inherit_id" ref="mrdc_shipment_freight_agency.view_mrdc_shipment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_associated_moves" type="object" 
+                <button name="action_view_associated_moves" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
                         invisible="associated_move_count == 0">
                     <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
                 </button>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_open_associate_wizard" type="object" 
-                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
-                <button name="action_open_disassociate_wizard" type="object" 
+                <button name="action_open_associate_wizard" type="object"
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"
+                        invisible="state == 'delivered'"/>
+                <button name="action_open_disassociate_wizard" type="object"
                         string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
-                        invisible="associated_move_count == 0"/>
+                        invisible="associated_move_count == 0 or state == 'delivered'"/>
             </xpath>
         </field>
     </record>
@@ -138,18 +143,19 @@
         <field name="inherit_id" ref="mrdc_shipment_good_carrier.view_mrdc_shipment_form"/>
         <field name="arch" type="xml">
             <xpath expr="//div[@name='button_box']" position="inside">
-                <button name="action_view_associated_moves" type="object" 
+                <button name="action_view_associated_moves" type="object"
                         class="oe_stat_button" icon="fa-file-text-o"
                         invisible="associated_move_count == 0">
                     <field name="associated_move_count" widget="statinfo" string="Todas las Fact."/>
                 </button>
             </xpath>
             <xpath expr="//header" position="inside">
-                <button name="action_open_associate_wizard" type="object" 
-                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"/>
-                <button name="action_open_disassociate_wizard" type="object" 
+                <button name="action_open_associate_wizard" type="object"
+                        string="Asociar Facturas" class="btn-secondary" icon="fa-link"
+                        invisible="state == 'delivered'"/>
+                <button name="action_open_disassociate_wizard" type="object"
                         string="Desasociar Facturas" class="btn-secondary" icon="fa-chain-broken"
-                        invisible="associated_move_count == 0"/>
+                        invisible="associated_move_count == 0 or state == 'delivered'"/>
             </xpath>
         </field>
     </record>
